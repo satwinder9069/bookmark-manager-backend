@@ -1,0 +1,16 @@
+# Dependencies
+/node_modules
+
+# Environment Variables - VERY IMPORTANT!
+.env
+
+# Production build folder (if you ever use TypeScript)
+/dist
+/build
+
+# Log files
+*.log
+npm-debug.log*
+
+# OS-specific files
+.DS_Store
