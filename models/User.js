@@ -7,12 +7,14 @@ const UserSchema = new mongoose.Schema (
             type: String,
             required:[true, 'Please enter username'],
             unique: true,
+            trim: true,
 
         },
         email: {
             type:String,
             required:[true, 'Please add an email'],
             unique: true,
+            lowercase: true,
             match: [
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       'Please use a valid email address',
@@ -21,9 +23,19 @@ const UserSchema = new mongoose.Schema (
         password: {
             type: String,
             required: [true, 'Please enter password'],
-            minLength: 8,
+            minLength: [8,'Password must be at least 8 characters'],
 
         },
+        // for email verification
+        isVerified: {
+            type: Boolean,
+            default: false
+        },
+
+        verificationToken: String,
+        verificationTokenExpire: Date,
+
+        // reset password
         resetPasswordToken: String,
         resetPasswordExpire: Date,
     },
