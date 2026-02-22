@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+
 const { getBookmarks, createBookmark, deleteBookmark, updateBookmark } = require('../controllers/bookmarkController');
 const { protect } = require('../middleware/authMiddleware');
 
