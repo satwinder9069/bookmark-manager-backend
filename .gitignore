@@ -1,10 +1,10 @@
 # Dependencies
 /node_modules
 
-# Environment Variables - VERY IMPORTANT!
+# Environment Variables
 .env
 
-# Production build folder (if you ever use TypeScript)
+# Production build folder
 /dist
 /build
 
