@@ -15,17 +15,34 @@ const protect = async (req , res , next) => {
 
             req.user = await User.findById(decode.id).select('-password');
 
-            next();
+            if(!req.user) {
+                return res.status(401).json({
+                    success: false,
+                    message: 'User not found'
+                });
+            }
 
+            if (!req.user.isVerified) {
+                return res.status(403).json({
+                    message: 'Please verify your email.'
+                });
+            }
+
+            next();
         } catch (error) {
-            return res.status(401).json({ message: 'Not authorized, token failed' });
+            console.error('Token verification error:', error.message);
+            return res.status(401).json({ 
+                success: false,
+                message: 'Not authorized, token failed'
+            });
         }
 
-    }
-
-    if(!token){
-        return res.status(401).json({ message: 'Not authorized, no token' });
+    } else {
+        return res.status(401).json({
+            success: false,
+            message: 'Not authorized, no token'
+        });
     }
 };
 
-module.exports = {protect};
+module.exports = { protect };
