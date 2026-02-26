@@ -12,7 +12,7 @@ const getBookmarks = asyncHandler(async (req, res) => {
 
     const bookmarks = await Bookmark.find(
         { user: req.user.id },
-        { name: 1, url: 1, tags: 1, isFavourite: 1 , createdAt: 1} // projection for faster response
+        { name: 1, url: 1, tags: 1, isFavourite: 1 , createdAt: 1, description: 1} // projection for faster response
     )
     .skip(skip)
     .limit(limit)
