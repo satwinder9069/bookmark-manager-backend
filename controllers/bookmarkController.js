@@ -72,7 +72,7 @@ const deleteBookmark = asyncHandler(async (req, res) => {
         throw new Error("Not authorized to delete this bookmark")
     }
 
-    await Bookmark.deleteOne();
+    await bookmark.deleteOne();
 
     res.status(200).json({
         success: true,
